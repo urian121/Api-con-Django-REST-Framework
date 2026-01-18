@@ -130,6 +130,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # REST Framework configuration para la documentación con Spectacular Swagger/OpenAPI
 REST_FRAMEWORK = {
     'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticatedOrReadOnly',
+    ),
 }
 
 SPECTACULAR_SETTINGS = {
@@ -137,6 +140,7 @@ SPECTACULAR_SETTINGS = {
     'DESCRIPTION': 'Documentación de la API',
     'VERSION': '1.0.0',
     'SCHEMA_PATH_PREFIX': r'/api/(?!schema|docs|redoc).*',
+    'SWAGGER_UI_SETTINGS': {'persistAuthorization': True},
     'SERVERS': [
         {'url': 'http://localhost:8000', 'description': 'Desarrollo'},
     ],
